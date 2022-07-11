@@ -1,20 +1,23 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Column from "App/Models/Column";
+import CreateColumnValidator from "App/Validators/CreateColumnValidator";
 
 export default class ColumnsController {
   async create({ request, auth }: HttpContextContract) {
-    let name = request.input("name");
     const { id: userId } = auth.use("api").user!;
     let boardId = request.param("boardId");
+    let payload = await request.validate(CreateColumnValidator);
+
     let column = await Column.create({
-      name,
+      name: payload.name,
       boardId,
       userId,
     });
+
     return column;
   }
 
-  async get({ request }: HttpContextContract) {
+  async get({ request, response }: HttpContextContract) {
     let columnId = request.param("columnId");
     let boardId = request.param("boardId");
 
@@ -22,7 +25,11 @@ export default class ColumnsController {
       id: columnId,
       boardId: boardId,
     });
+    if (!column) {
+      return response.notFound();
+    }
 
+    await column.load("tasks");
     return column;
   }
 

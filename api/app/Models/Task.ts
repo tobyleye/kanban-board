@@ -17,10 +17,10 @@ export default class Task extends BaseModel {
   public userId: number;
 
   @column()
-  public description: string;
+  public description: null | string;
 
   @column()
-  public subtasks: JSON;
+  public subtasks: { task: string; completed: boolean; }[];
 
   @belongsTo(() => Column)
   public status: BelongsTo<typeof Column>
