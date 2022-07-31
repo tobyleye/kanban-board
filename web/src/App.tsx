@@ -4,10 +4,20 @@ import { BoardLayout } from "./components/BoardLayout";
 import { NewBoard } from "./components/NewBoard";
 import { NotFound } from "./components/NotFound";
 import { theme } from "./theme";
+import TestColorMode from "./components/test-color-mode";
+import { SingleBoard } from "./components/SingleBoard";
+import { NewTask } from "./components/NewTask";
+import { Login } from "./components/Login";
 
 function Index() {
   return (
-    <Box w="full" h="full" display="grid" placeItems="center" textAlign="center">
+    <Box
+      w="full"
+      h="full"
+      display="grid"
+      placeItems="center"
+      textAlign="center"
+    >
       <Text color="grey.light" fontSize="sm">
         You are one board away from getting started!
       </Text>
@@ -23,9 +33,14 @@ function App() {
           <Routes>
             <Route path="/" element={<BoardLayout />}>
               <Route index element={<Index />} />
+              <Route path="/boards/:id" element={<SingleBoard />}>
+                <Route path="tasks/new" element={<NewTask />} />
+              </Route>
               <Route path="new-board" element={<NewBoard />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Route>
+            <Route path="/test-color-mode" element={<TestColorMode />} />
           </Routes>
         </BrowserRouter>
       </div>

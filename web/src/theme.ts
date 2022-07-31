@@ -19,7 +19,9 @@ const theme = extendTheme({
             dark:       '#ea5555',
             light:      '#ff9898',
         }
-    }
+    },
+    initialColorMode: 'light',
+    useSystemColorMode: true
 })
 
 export { theme }
