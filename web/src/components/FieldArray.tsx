@@ -45,9 +45,12 @@ const FieldArrayItem = React.forwardRef<
           ) : null}
         </Box>
       </FormControl>
-      <CloseButton css={{
-        color: isInvalid ? 'red' :  'inherit'
-      }} flexShrink="0" onClick={onDelete} />
+      {deletable ? (
+        <CloseButton css={{
+          color: isInvalid ? 'red' :  'inherit'
+        }} flexShrink="0" onClick={onDelete} />
+
+      ): null}
     </Box>
   );
 });

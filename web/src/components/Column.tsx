@@ -1,4 +1,5 @@
 import { Box, List, ListItem, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom"
 
 function TaskCard({
   title,
@@ -26,6 +27,8 @@ function TaskCard({
   );
 }
 
+const COL_WIDTH = 300;
+
 export const Column = ({
   column,
 }: {
@@ -41,9 +44,18 @@ export const Column = ({
   };
 }) => {
   return (
-    <Box>
-      <Box>
-        {column.name} ({column.tasks.length})
+    <Box as="section" w={COL_WIDTH}>
+      <Box as="header" display="flex" alignItems="center" gap={2} mb={4}>
+        <Box w={3} h={3} rounded="full" bg="black"></Box>
+        <Text
+          color="grey.light"
+          letterSpacing="2.4px"
+          fontWeight="bold"
+          size="sm"
+          textTransform="uppercase"
+        >
+          {column.name} ({column.tasks.length})
+        </Text>
       </Box>
       <List display="grid" gap={4}>
         {column.tasks.map((task) => (
@@ -55,3 +67,28 @@ export const Column = ({
     </Box>
   );
 };
+
+export const NewColumnButton = () => (
+  <Box
+    to="./columns/new"
+    as={Link}
+    w={COL_WIDTH}
+    cursor="pointer"
+    h="full"
+    display="grid"
+    placeItems="center"
+    px={10}
+    rounded="md"
+    background=" linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%)"
+  >
+    <Box
+      display="flex"
+      alignItems="center"
+      fontWeight="bold"
+      color="grey.light"
+      fontSize="2xl"
+    >
+      <Text>New Column</Text>
+    </Box>
+  </Box>
+);

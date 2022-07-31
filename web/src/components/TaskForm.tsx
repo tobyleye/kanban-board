@@ -84,6 +84,7 @@ export const TaskForm = ({ onSubmit, onClose }: { onSubmit?: (values: any) => vo
                     <FieldArrayItem
                       error={errors?.subtasks?.[index]?.task?.message}
                       onDelete={() => remove(index)}
+                      deletable={fields.length > 1}
                       {...register(`subtasks.${index}.task`)}
                     />
                   ))}

@@ -1,6 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { Column } from "./Column";
+import { Column,  NewColumnButton } from "./Column";
 
 export function SingleBoard() {
   const columns = [
@@ -42,28 +42,21 @@ export function SingleBoard() {
     },
   ];
 
-  let content;
-  if (columns.length === 0)
-    content = (
-      <Box w="full" h="full" display="grid" placeItems="center">
-        <Text>Single board</Text>
+  let content = (
+    <Box p={4} h="full">
+      <Box display="flex" overflow="auto" h="full" gap={8}>
+        {columns.map((col) => (
+          <Column key={col.id} column={col} />
+        ))}
+        <NewColumnButton />
       </Box>
-    );
-  else
-    content = (
-      <Box p={4}>
-        <Box display="flex" overflow="auto">
-          {columns.map((col) => (
-            <Column key={col.id} column={col} />
-          ))}
-        </Box>
-      </Box>
-    );
+    </Box>
+  );
 
   return (
-    <Box>
+    <>
       {content}
       <Outlet />
-    </Box>
+    </>
   );
 }

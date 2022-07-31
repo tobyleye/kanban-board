@@ -8,6 +8,7 @@ import TestColorMode from "./components/test-color-mode";
 import { SingleBoard } from "./components/SingleBoard";
 import { NewTask } from "./components/NewTask";
 import { Login } from "./components/Login";
+import { NewColumn } from "./components/NewColumn";
 
 function Index() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route index element={<Index />} />
               <Route path="/boards/:id" element={<SingleBoard />}>
                 <Route path="tasks/new" element={<NewTask />} />
+                <Route path="columns/new" element={<NewColumn />} />
               </Route>
               <Route path="new-board" element={<NewBoard />} />
               <Route path="/login" element={<Login />} />
