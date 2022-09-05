@@ -6,13 +6,14 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  FormLabel,
   Box,
 } from "@chakra-ui/react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldArray, FieldArrayItem } from "./FieldArray";
+import { useNavigate } from "react-router-dom";
+import { HiPlus } from "react-icons/hi"
 
 const schema = yup.object({
   columns: yup.array().of(
@@ -42,7 +43,11 @@ export const NewColumn = () => {
     control,
   });
 
-  let onClose = () => {};
+  const navigate = useNavigate()
+
+  let onClose = () => {
+    navigate('../')
+  };
 
   let submit = () => {};
 

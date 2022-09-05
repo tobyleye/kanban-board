@@ -1,5 +1,6 @@
-import { Box, List, ListItem, Text } from "@chakra-ui/react";
+import { Box, IconButton, List, ListItem, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom"
+import {HiPlus} from "react-icons/hi"
 
 function TaskCard({
   title,
@@ -45,13 +46,13 @@ export const Column = ({
 }) => {
   return (
     <Box as="section" w={COL_WIDTH}>
-      <Box as="header" display="flex" alignItems="center" gap={2} mb={4}>
+      <Box as="header" display="flex" alignItems="center" gap={2} mb={6}>
         <Box w={3} h={3} rounded="full" bg="black"></Box>
         <Text
           color="grey.light"
           letterSpacing="2.4px"
           fontWeight="bold"
-          size="sm"
+          size="xs"
           textTransform="uppercase"
         >
           {column.name} ({column.tasks.length})
@@ -88,6 +89,7 @@ export const NewColumnButton = () => (
       color="grey.light"
       fontSize="2xl"
     >
+        <IconButton fontSize="2xl" aria-label="new column" icon={<HiPlus />} />
       <Text>New Column</Text>
     </Box>
   </Box>

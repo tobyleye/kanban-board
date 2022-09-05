@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 
-export function BoardLayout() {
+export function BoardLayout({ blurred = false }: { blurred?: boolean }) {
   return (
     <Box
       display="grid"
@@ -15,6 +15,7 @@ export function BoardLayout() {
         "sidemenu header"
         "sidemenu main-content"
     `}
+      filter={blurred ? "blur(5px)" : "none"}
     >
       <Box gridArea="sidemenu">
         <SideMenu />

@@ -18,11 +18,8 @@ type FormFieldProps = {
 
 const FormField = React.forwardRef<any, FormFieldProps>(
   ({ type = "text", label, error, children, ...props }, forwardedRef) => {
-    
     const renderInput = () => {
-      if (["text", "number"].includes(type)) {
-        return <Input ref={forwardedRef} type={type} {...props} />;
-      } else if (type === "select") {
+      if (type === "select") {
         return (
           <Select ref={forwardedRef} {...props}>
             {children}
@@ -30,6 +27,8 @@ const FormField = React.forwardRef<any, FormFieldProps>(
         );
       } else if (type === "textarea") {
         return <Textarea ref={forwardedRef} {...props} />;
+      } else {
+        return <Input ref={forwardedRef} type={type} {...props} />;
       }
     };
 
@@ -43,7 +42,6 @@ const FormField = React.forwardRef<any, FormFieldProps>(
   }
 );
 
-FormField.displayName = 'FormField'
+FormField.displayName = "FormField";
 
-
-export { FormField }
+export { FormField };

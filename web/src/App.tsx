@@ -7,8 +7,9 @@ import { theme } from "./theme";
 import TestColorMode from "./components/test-color-mode";
 import { SingleBoard } from "./components/SingleBoard";
 import { NewTask } from "./components/NewTask";
-import { Login } from "./components/Login";
+import { Auth } from "./components/Auth";
 import { NewColumn } from "./components/NewColumn";
+import { useState } from "react";
 
 function Index() {
   return (
@@ -27,19 +28,22 @@ function Index() {
 }
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+
   return (
     <ChakraProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<BoardLayout />}>
+            <Route path="/" element={<BoardLayout blurred={!loggedIn}/>}>
               <Route index element={<Index />} />
               <Route path="/boards/:id" element={<SingleBoard />}>
                 <Route path="tasks/new" element={<NewTask />} />
                 <Route path="columns/new" element={<NewColumn />} />
               </Route>
               <Route path="new-board" element={<NewBoard />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="login" element={<Auth />} />
+              <Route path="signup" element={<Auth />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="/test-color-mode" element={<TestColorMode />} />
